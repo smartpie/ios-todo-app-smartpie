@@ -53,7 +53,7 @@ final class ToDoListTests: XCTestCase {
         XCTAssertEqual(TodoItem.parse(csv: "1;bla bla bla;важная;333;false;111;я упал на землю"), nil)  // lastChangeDate
     }
     
-    // MARK: CSV Creatoin
+    // MARK: - CSV Creatoin
     func testTodoItemCreateCsv() throws {
         let item = TodoItem(id: "1",
                             text: "bla bla bla",
@@ -102,7 +102,7 @@ final class ToDoListTests: XCTestCase {
         XCTAssertEqual(item.csv, "1;bla bla bla;важная;333;false;111;")
     }
 
-    // MARK: JSON Parsing
+    // MARK: - JSON Parsing
     func testTodoItemParceJson() throws {
         let item = TodoItem(id: "1",
                             text: "bla bla bla",
@@ -304,7 +304,7 @@ final class ToDoListTests: XCTestCase {
         XCTAssertEqual(TodoItem.parse(json: json5), nil)    // lastChangeDate
     }
     
-    // // MARK: JSON Creation
+    // // MARK: - JSON Creation
     func testTodoItemCreateJson() throws {
         let sut = TodoItem(id: "1",
                            text: "bla bla bla",
@@ -415,7 +415,7 @@ final class ToDoListTests: XCTestCase {
     }
 }
 
-//MARK: Keys
+//MARK: - Keys
 // Keys that used in backend
 private let kId = "id"
 private let kText = "text"

@@ -29,7 +29,7 @@ class FileCache {
 
 }
 
-// MARK: JSON
+// MARK: - JSON
 extension FileCache {
     func saveTodosToFile(fileNameJson: String) throws {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -72,7 +72,7 @@ extension FileCache {
     }
 }
 
-// MARK: CSV
+// MARK: - CSV
 extension FileCache {
     func saveTodosToFile(fileNameCsv: String) throws {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {

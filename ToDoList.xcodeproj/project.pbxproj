@@ -84,7 +84,7 @@
 		CAC1D66A2A379EEC005A45BC /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				CAC1D69B2A37A10B005A45BC /* WillNameItLater */,
+				CAC1D69B2A37A10B005A45BC /* Model */,
 				CAC1D66B2A379EEC005A45BC /* AppDelegate.swift */,
 				CAC1D66D2A379EEC005A45BC /* SceneDelegate.swift */,
 				CAC1D66F2A379EEC005A45BC /* ViewController.swift */,
@@ -105,13 +105,13 @@
 			path = ToDoListTests;
 			sourceTree = "<group>";
 		};
-		CAC1D69B2A37A10B005A45BC /* WillNameItLater */ = {
+		CAC1D69B2A37A10B005A45BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CAC1D69C2A37A13F005A45BC /* TodoItem.swift */,
 				CAB5B2182A387F6200DC0A05 /* FileCache.swift */,
 			);
-			path = WillNameItLater;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -34,7 +34,7 @@ struct TodoItem: Equatable {
     }
 }
 
-// MARK: TodoItem JSON
+// MARK: - TodoItem JSON
 extension TodoItem {
     static func parse(json: Any) -> TodoItem? {
         if json as? [String: Any] == nil { return nil }
@@ -92,7 +92,7 @@ extension TodoItem {
     }
 }
 
-// MARK: TodoItem JSON
+// MARK: - TodoItem JSON
 extension TodoItem {
     static func parse(csv: String) -> TodoItem? {
         // ORDER:
@@ -156,7 +156,7 @@ extension TodoItem {
 }
 
 
-//MARK: Keys
+//MARK: - Keys
 // Keys that used in backend
 private let kId = "id"
 private let kText = "text"
