@@ -11,31 +11,20 @@ enum FileCacheErrors: Error {
 class FileCache {
     static let header = "id;text;importance;deadLine;isDone;creationDate;lastChangeDate"
     
-    private(set) var TodoItems: [TodoItem] = []
+    private(set) var TodoItems: [String: TodoItem] = [:]
 
     @discardableResult
     func addTodoItem(_ newTodo: TodoItem) -> TodoItem? {
-        if let oldIndex = TodoItems.firstIndex(where: { $0.id == newTodo.id} ) {
-            let oldTodoItem = TodoItems[oldIndex]
-            TodoItems[oldIndex] = newTodo
-            return oldTodoItem
-        }
-        TodoItems.append(newTodo)
-        return nil
+        let oldTodoItem = TodoItems[newTodo.id]
+        TodoItems[newTodo.id] = newTodo
+        return oldTodoItem
     }
 
     @discardableResult
     func removeTodoItemById(_ id: String) -> TodoItem? {
-        if let oldIndex = TodoItems.firstIndex(where: { $0.id == id} ) {
-            let oldTodoItem = TodoItems[oldIndex]
-            TodoItems.remove(at: oldIndex)
-            return oldTodoItem
-        }
-        return nil
-    }
-
-    func removeAllTodoItems() { // ONLY FOR TESTING
-        TodoItems = []
+        let oldTodoItem = TodoItems[id]
+        TodoItems[id] = nil
+        return oldTodoItem
     }
 
 }
@@ -46,8 +35,8 @@ extension FileCache {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheErrors.unableToFindDocumentsDirectory
         }
-
-        let json = TodoItems.map { $0.json }
+        
+        let json = TodoItems.map { $0.value.json }
 
         guard let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) else {
             throw FileCacheErrors.unableToConvertToJson
@@ -74,10 +63,10 @@ extension FileCache {
             throw FileCacheErrors.unableToParseData
         }
 
-        TodoItems = []
+        TodoItems = [:]
         for item in json {
             if let tempItem = TodoItem.parse(json: item) {
-                TodoItems.append(tempItem)
+                TodoItems[tempItem.id] = tempItem
             }
         }
     }
@@ -90,7 +79,7 @@ extension FileCache {
             throw FileCacheErrors.unableToFindDocumentsDirectory
         }
         
-        let data = Data((TodoItems.reduce(FileCache.header) { $0 + "\n" + $1.csv }).utf8)
+        let data = Data((TodoItems.reduce(FileCache.header) { $0 + "\n" + $1.value.csv }).utf8)
         
         do {
             try data.write(to: documentsURL.appendingPathComponent(fileNameCsv))
@@ -110,10 +99,10 @@ extension FileCache {
 
         let rows = String(decoding: dataRaw, as: UTF8.self).split(separator: "\n")
         if rows[0].trimmingCharacters(in: .whitespacesAndNewlines) == FileCache.header {
-            TodoItems = []
+            TodoItems = [:]
             for i in 1..<rows.count {
                 if let tempItem = TodoItem.parse(csv: String(rows[i])) {
-                    TodoItems.append(tempItem)
+                    TodoItems[tempItem.id] = tempItem
                 }
             }
         } else {
