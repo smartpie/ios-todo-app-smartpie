@@ -393,8 +393,8 @@ class EditTodoItemViewController: UIViewController {
 
             firstSeparatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
             // Не смог понять, почему но вот на эти выделенные справа констраинты оно ругается, но при этом они полностью работают
-//            firstSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),     // беды
-//            firstSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16),  // беды
+            firstSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),     // беды
+            firstSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16),  // беды
 
             deadLineStackView.leadingAnchor.constraint(equalTo: deadLineView.leadingAnchor, constant: 16),
             deadLineStackView.centerYAnchor.constraint(equalTo: deadLineView.centerYAnchor),
@@ -410,8 +410,8 @@ class EditTodoItemViewController: UIViewController {
             deadLineView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor),
 
             secondSeparatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
-//            secondSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),    // беды
-//            secondSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16), // беды
+            secondSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),    // беды
+            secondSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16), // беды
 
             detailsStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 16),
             detailsStackView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -16),
@@ -423,8 +423,8 @@ class EditTodoItemViewController: UIViewController {
             deleteButton.heightAnchor.constraint(equalToConstant: 56),
             deleteButton.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor),
 
-//            datePicker.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 12),     // беды
-//            datePicker.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -12),  // беды
+            datePicker.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 12),     // беды
+            datePicker.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -12),  // беды
         ])
     }
 
