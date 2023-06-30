@@ -13,6 +13,8 @@
 		CA29A1FE2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */; };
 		CA4875602A433F8400A38E3C /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48755F2A433F8400A38E3C /* EditTodoItemViewController.swift */; };
 		CA4CB5942A44D9930093F371 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4CB5932A44D9930093F371 /* CellView.swift */; };
+		CA683D6A2A4F7F40003EA596 /* AddCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D692A4F7F40003EA596 /* AddCellView.swift */; };
+		CA683D6C2A4F809E003EA596 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */; };
 		CAB5B2192A387F6200DC0A05 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5B2182A387F6200DC0A05 /* FileCache.swift */; };
 		CAC1D66C2A379EEC005A45BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1D66B2A379EEC005A45BC /* AppDelegate.swift */; };
 		CAC1D66E2A379EEC005A45BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1D66D2A379EEC005A45BC /* SceneDelegate.swift */; };
@@ -21,6 +23,9 @@
 		CAC1D6782A379EEE005A45BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC1D6762A379EEE005A45BC /* LaunchScreen.storyboard */; };
 		CAC1D6832A379EEE005A45BC /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1D6822A379EEE005A45BC /* ToDoListTests.swift */; };
 		CAC1D69D2A37A13F005A45BC /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1D69C2A37A13F005A45BC /* TodoItem.swift */; };
+		CACB2C402A4D95F2009EE84B /* UIColor+Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB2C3F2A4D95F2009EE84B /* UIColor+Extencion.swift */; };
+		CACB2C432A4D9B21009EE84B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB2C422A4D9B21009EE84B /* RootViewModel.swift */; };
+		CACB2C452A4E2D9F009EE84B /* EditTodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB2C442A4E2D9F009EE84B /* EditTodoItemViewModel.swift */; };
 		CAD66F872A42299F00167F5A /* FileCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD66F862A42299F00167F5A /* FileCacheTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +46,8 @@
 		CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneAndOnlyTestTodoItem.swift; sourceTree = "<group>"; };
 		CA48755F2A433F8400A38E3C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		CA4CB5932A44D9930093F371 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		CA683D692A4F7F40003EA596 /* AddCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellView.swift; sourceTree = "<group>"; };
+		CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		CAB5B2182A387F6200DC0A05 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		CAC1D6682A379EEC005A45BC /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC1D66B2A379EEC005A45BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +59,9 @@
 		CAC1D67E2A379EEE005A45BC /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC1D6822A379EEE005A45BC /* ToDoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
 		CAC1D69C2A37A13F005A45BC /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		CACB2C3F2A4D95F2009EE84B /* UIColor+Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extencion.swift"; sourceTree = "<group>"; };
+		CACB2C422A4D9B21009EE84B /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		CACB2C442A4E2D9F009EE84B /* EditTodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewModel.swift; sourceTree = "<group>"; };
 		CAD66F862A42299F00167F5A /* FileCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +88,8 @@
 			children = (
 				CA4CB5932A44D9930093F371 /* CellView.swift */,
 				CA24D1362A460B57002C565D /* SeparatorView.swift */,
+				CA683D692A4F7F40003EA596 /* AddCellView.swift */,
+				CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +109,7 @@
 				CAC1D6742A379EEE005A45BC /* Assets.xcassets */,
 				CA24D1342A45C47A002C565D /* UIFont+Extencion.swift */,
 				CA24D1382A4642C2002C565D /* Date+Extension.swift */,
+				CACB2C3F2A4D95F2009EE84B /* UIColor+Extencion.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -127,6 +140,7 @@
 				CAC1D66D2A379EEC005A45BC /* SceneDelegate.swift */,
 				CA16A1772A42E8B3001EABAF /* Controller */,
 				CA16A1762A42E8A1001EABAF /* View */,
+				CACB2C412A4D9B02009EE84B /* ViewModel */,
 				CAC1D69B2A37A10B005A45BC /* Model */,
 				CA24D1312A45C3AF002C565D /* Assets */,
 				CAC1D6762A379EEE005A45BC /* LaunchScreen.storyboard */,
@@ -151,6 +165,15 @@
 				CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CACB2C412A4D9B02009EE84B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CACB2C422A4D9B21009EE84B /* RootViewModel.swift */,
+				CACB2C442A4E2D9F009EE84B /* EditTodoItemViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +278,7 @@
 			files = (
 				CA4CB5942A44D9930093F371 /* CellView.swift in Sources */,
 				CA4875602A433F8400A38E3C /* EditTodoItemViewController.swift in Sources */,
+				CACB2C432A4D9B21009EE84B /* RootViewModel.swift in Sources */,
 				CA24D1372A460B57002C565D /* SeparatorView.swift in Sources */,
 				CAC1D6702A379EEC005A45BC /* RootViewController.swift in Sources */,
 				CA29A1FE2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift in Sources */,
@@ -263,7 +287,11 @@
 				CAC1D69D2A37A13F005A45BC /* TodoItem.swift in Sources */,
 				CA24D1352A45C47A002C565D /* UIFont+Extencion.swift in Sources */,
 				CAB5B2192A387F6200DC0A05 /* FileCache.swift in Sources */,
+				CACB2C452A4E2D9F009EE84B /* EditTodoItemViewModel.swift in Sources */,
+				CA683D6C2A4F809E003EA596 /* TableViewHeader.swift in Sources */,
 				CAC1D66E2A379EEC005A45BC /* SceneDelegate.swift in Sources */,
+				CACB2C402A4D95F2009EE84B /* UIColor+Extencion.swift in Sources */,
+				CA683D6A2A4F7F40003EA596 /* AddCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
