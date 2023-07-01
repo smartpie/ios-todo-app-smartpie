@@ -19,7 +19,7 @@ struct TodoItem: Equatable {
     
     init(id: String = UUID().uuidString,
          text: String,
-         importance: Importance,
+         importance: Importance = .basic,
          deadLine: Date? = nil,
          isDone: Bool = false,
          creationDate: Date = Date(),

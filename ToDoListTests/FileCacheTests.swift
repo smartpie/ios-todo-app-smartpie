@@ -36,7 +36,7 @@ final class FileCacheTests: XCTestCase {
         try? fileCache.saveTodosToFile(fileNameJson: "test1.json")
         try? newCache.loadTodosFromFile(fileNameJson: "test1.json")
 
-        XCTAssertEqual(fileCache.TodoItems, newCache.TodoItems)
+        XCTAssertEqual(fileCache.todoItems, newCache.todoItems)
     }
 
     func testFileCacheCsv() throws {
@@ -72,6 +72,6 @@ final class FileCacheTests: XCTestCase {
         try? fileCache.saveTodosToFile(fileNameCsv: "test1.csv")
         try? newCache.loadTodosFromFile(fileNameCsv: "test1.csv")
 
-        XCTAssertEqual(fileCache.TodoItems, newCache.TodoItems)
+        XCTAssertEqual(fileCache.todoItems, newCache.todoItems)
     }
 }
