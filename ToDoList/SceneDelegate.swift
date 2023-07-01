@@ -1,4 +1,6 @@
 import UIKit
+import CocoaLumberjack
+import CocoaLumberjackSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,6 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
+        DDLog.add(DDOSLogger.sharedInstance)
+
+
+//        let logger = Logger(label: "com.example.BestExampleApp.main")
+//        logger.info("Hello World!")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
