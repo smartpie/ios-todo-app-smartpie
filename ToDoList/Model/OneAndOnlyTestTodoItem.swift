@@ -13,7 +13,7 @@ class TodoListHandler {
         print(item)
         todoItem = item
         TodoListHandler.fileCache.addTodoItem(item)
-        print(TodoListHandler.fileCache.TodoItems)
+        print(TodoListHandler.fileCache.todoItems)
         saveItems()
     }
 
@@ -35,11 +35,11 @@ class TodoListHandler {
     func loadItems() {
         do {
             try TodoListHandler.fileCache.loadTodosFromFile(fileNameJson: "one.json")
-            print(TodoListHandler.fileCache.TodoItems)
-            if TodoListHandler.fileCache.TodoItems.count == 0 {
+            print(TodoListHandler.fileCache.todoItems)
+            if TodoListHandler.fileCache.todoItems.count == 0 {
                 print("There was no saved TodoItem")
             } else {
-                todoItem = TodoListHandler.fileCache.TodoItems[0]
+                todoItem = TodoListHandler.fileCache.todoItems[0]
                 print("Loaded to JSON")
             }
 

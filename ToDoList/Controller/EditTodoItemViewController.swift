@@ -1,12 +1,14 @@
 import UIKit
 
 class EditTodoItemViewController: UIViewController {
-    let handler: TodoListHandler
+    var viewModel: EditTodoItemViewModel
 
-    init(handler: TodoListHandler) {
-        self.handler = handler
-        
+    init(_ item: TodoItem) {
+        self.viewModel = EditTodoItemViewModel(item)
+
         super.init(nibName: nil, bundle: nil)
+
+        viewModel.viewController = self
     }
 
     required init?(coder: NSCoder) {
@@ -14,9 +16,41 @@ class EditTodoItemViewController: UIViewController {
     }
 
 // MARK: TodoItem Properties
-    private var currentText = ""
-    private var currentImportance = Importance.basic
-    private var currentDeadline: Date? = nil
+    var currentText = ""
+    var currentImportance: Importance? {
+        didSet {
+            guard
+                let currentImportance = currentImportance
+            else { return }
+
+            switch currentImportance {
+            case .low:
+                importanceControl.selectedSegmentIndex = 0
+            case .basic:
+                importanceControl.selectedSegmentIndex = 1
+            case .important:
+                importanceControl.selectedSegmentIndex = 2
+            }
+
+//            print("importance set")
+        }
+    }
+    var currentDeadline: Date? {
+        didSet {
+            if let deadline = currentDeadline {
+                deadLineSwitch.isOn = true
+                deadLineDateButton.setTitle(
+                    deadline.dateForLabel,
+                    for: .normal
+                )
+                deadLineDateButton.isHidden = false
+                deadLineDateButton.alpha = 1
+                datePicker.date = deadline
+            }
+
+//            print("deadLine set")
+        }
+    }
     var todoItem: TodoItem? = nil
 
 
@@ -24,7 +58,7 @@ class EditTodoItemViewController: UIViewController {
     private lazy var scrollView = UIScrollView()
     private lazy var wrapperView = UIView()
 
-    private lazy var textView = UITextView()
+    lazy var textView = UITextView()
 
     private lazy var importanceLabel = UILabel()
     private lazy var importanceControl = UISegmentedControl()
@@ -53,22 +87,11 @@ class EditTodoItemViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-
-        if let todoItem = handler.todoItem {
-            currentText = todoItem.text
-            currentImportance = todoItem.importance
-            currentDeadline = todoItem.deadLine
-            deleteButton.isEnabled = true
-            navigationItem.rightBarButtonItem?.isEnabled = false
-        } else {
-            deleteButton.isEnabled = false
-            navigationItem.rightBarButtonItem?.isEnabled = false
-        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "Back.Primary")
+        view.backgroundColor = UIColor.backPrimary
 
         setupNavigationItem()
 
@@ -79,18 +102,7 @@ class EditTodoItemViewController: UIViewController {
         registerKeyboardNotifications()
         addTapGestureRecognizerToDismissKeyboard()
 
-        if let todoItem = handler.todoItem {
-            if todoItem.deadLine != nil {
-                deadLineSwitch.isOn = true
-                deadLineDateButton.setTitle(
-                    todoItem.deadLine?.dateForLabel,
-                    for: .normal
-                )
-                deadLineDateButton.isHidden = false
-                deadLineDateButton.alpha = 1
-                datePicker.date = todoItem.deadLine ?? Date()
-            }
-        }
+        viewModel.loadData()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -153,16 +165,16 @@ class EditTodoItemViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
 
         textView.isScrollEnabled = false
-        textView.backgroundColor = UIColor(named: "Back.Secondary")
+        textView.backgroundColor = UIColor.backSecondary
         textView.layer.cornerRadius = 16
         textView.font = .systemFont(ofSize: 17, weight: .regular)
 
         if currentText == "" {
             textView.text = "Что надо сделать?"
-            textView.textColor = UIColor(named: "Label.Tertiary")
+            textView.textColor = UIColor.labelTertiary
         } else {
             textView.text = currentText
-            textView.textColor = UIColor(named: "Label.Primary")
+            textView.textColor = UIColor.labelPrimary
         }
 
         textView.textContainerInset = UIEdgeInsets(
@@ -187,22 +199,15 @@ class EditTodoItemViewController: UIViewController {
 
         let configuration = UIImage.SymbolConfiguration(scale: .small).applying(UIImage.SymbolConfiguration(weight: .bold))
         let arrowImage = UIImage(systemName: "arrow.down", withConfiguration: configuration)?
-            .withTintColor(UIColor(named: "Color.Gray") ?? .gray, renderingMode: .alwaysOriginal)
+            .withTintColor(UIColor.colorGray, renderingMode: .alwaysOriginal)
         let exclamationmarkImage = UIImage(systemName: "exclamationmark.2", withConfiguration: configuration)?
-            .withTintColor(UIColor(named: "Color.Red") ?? .red, renderingMode: .alwaysOriginal)
+            .withTintColor(UIColor.colorRed, renderingMode: .alwaysOriginal)
 
         importanceControl.insertSegment(with: arrowImage, at: 0, animated: true)
         importanceControl.insertSegment(withTitle: "нет", at: 1, animated: true)
         importanceControl.insertSegment(with: exclamationmarkImage, at: 2, animated: true)
 
-        switch currentImportance {
-        case .important:
-            importanceControl.selectedSegmentIndex = 2
-        case .basic:
-            importanceControl.selectedSegmentIndex = 1
-        case .low:
-            importanceControl.selectedSegmentIndex = 0
-        }
+        importanceControl.selectedSegmentIndex = 1
 
         importanceControl.addTarget(
             self,
@@ -228,8 +233,8 @@ class EditTodoItemViewController: UIViewController {
         deadLineDateButton.translatesAutoresizingMaskIntoConstraints = false
 
         deadLineDateButton.setTitle("Тут появится дата", for: .normal)
-        deadLineDateButton.setTitleColor(UIColor(named: "Color.Blue"), for: .normal)
-        deadLineDateButton.tintColor = UIColor(named: "Color.Blue")
+        deadLineDateButton.setTitleColor(UIColor.colorBlue, for: .normal)
+        deadLineDateButton.tintColor = UIColor.colorBlue
         deadLineDateButton.titleLabel?.font = UIFont.Footnote
         deadLineDateButton.addTarget(
             self,
@@ -298,15 +303,15 @@ class EditTodoItemViewController: UIViewController {
         detailsStackView.axis = .vertical
         detailsStackView.distribution = .fill
         detailsStackView.layer.cornerRadius = 16
-        detailsStackView.backgroundColor = UIColor(named: "Back.Secondary")
+        detailsStackView.backgroundColor = UIColor.backSecondary
     }
 
     private func setupDeleteButton() {
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
 
-        deleteButton.backgroundColor = UIColor(named: "Back.Secondary")
-        deleteButton.setTitleColor(UIColor(named: "Color.Red"), for: .normal)
-        deleteButton.setTitleColor(UIColor(named: "Label.Tertiary"), for: .disabled)
+        deleteButton.backgroundColor = UIColor.backSecondary
+        deleteButton.setTitleColor(UIColor.colorRed, for: .normal)
+        deleteButton.setTitleColor(UIColor.labelTertiary, for: .disabled)
         deleteButton.layer.cornerRadius = 16
         deleteButton.titleLabel?.font = UIFont.Body
         deleteButton.setTitle("Удалить", for: .normal)
@@ -436,21 +441,12 @@ class EditTodoItemViewController: UIViewController {
     @objc private func didTapSaveButton() {
         view.endEditing(true)
 
-        if let oldTodoItem = handler.todoItem {
-            let newTodoItem = TodoItem(id: oldTodoItem.id,
-                                    text: currentText,
-                                    importance: currentImportance,
-                                    deadLine: currentDeadline,
-                                    isDone: oldTodoItem.isDone,
-                                    creationDate: oldTodoItem.creationDate,
-                                    lastChangeDate: oldTodoItem.lastChangeDate)
-            self.todoItem = newTodoItem
-            handler.addItem(newTodoItem)
-        } else {
-            let newTodoItem = TodoItem(text: currentText, importance: currentImportance, deadLine: currentDeadline)
-            self.todoItem = newTodoItem
-            handler.addItem(newTodoItem)
-        }
+        viewModel.saveItem(TodoItem(
+            id: viewModel.todoItemState.id,
+            text: textView.text,
+            importance: currentImportance ?? .basic,
+            deadLine: currentDeadline ?? nil)
+        )
 
         dismiss(animated: true)
     }
@@ -482,7 +478,7 @@ class EditTodoItemViewController: UIViewController {
         deadLineDateButton.setTitle(datePicker.date.dateForLabel, for: .normal)
         currentDeadline = datePicker.date
 
-        if !textView.text.isEmpty && textView.textColor != UIColor(named: "Label.Tertiary") {
+        if !textView.text.isEmpty && textView.textColor != UIColor.labelTertiary {
             navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -529,7 +525,7 @@ class EditTodoItemViewController: UIViewController {
             defaultConfigureDatePicker()
         }
 
-        if !textView.text.isEmpty && textView.textColor != UIColor(named: "Label.Tertiary") {
+        if !textView.text.isEmpty && textView.textColor != UIColor.labelTertiary {
             navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -546,9 +542,9 @@ class EditTodoItemViewController: UIViewController {
     }
 
     @objc private func deleteTodoItem() {
-        handler.deleteItem()
         todoItem = nil
         checkTodoItem()
+        viewModel.deleteItem(id: viewModel.todoItemState.id)
 
         dismiss(animated: true)
     }
@@ -563,7 +559,7 @@ class EditTodoItemViewController: UIViewController {
             currentImportance = .basic
         }
 
-        if !textView.text.isEmpty && textView.textColor != UIColor(named: "Label.Tertiary") {
+        if !textView.text.isEmpty && textView.textColor != UIColor.labelTertiary {
             navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
@@ -606,16 +602,16 @@ class EditTodoItemViewController: UIViewController {
 
 extension EditTodoItemViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor(named: "Label.Tertiary") {
+        if textView.textColor == UIColor.labelTertiary {
             textView.text = nil
-            textView.textColor = UIColor(named: "Label.Primary")
+            textView.textColor = UIColor.labelPrimary
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Что надо сделать?"
-            textView.textColor = UIColor(named: "Label.Tertiary")
+            textView.textColor = UIColor.labelTertiary
         } else {
             currentText = textView.text
         }
@@ -625,4 +621,3 @@ extension EditTodoItemViewController: UITextViewDelegate {
         navigationItem.rightBarButtonItem?.isEnabled = textView.text.isEmpty ? false : true
     }
 }
-
