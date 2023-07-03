@@ -82,12 +82,10 @@ class RootViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.backgroundColor = UIColor.backPrimary
-//        tableView.layer.cornerRadius = 256
-//        tableView.layer.masksToBounds = true
-//        tableView.layer.borderWidth = 2
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: TableViewHeader.identifier)
         tableView.register(CellView.self, forCellReuseIdentifier: CellView.identifier)
         tableView.register(AddCellView.self, forCellReuseIdentifier: AddCellView.identifier)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 52, bottom: 0, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -154,10 +152,37 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         rootViewModel.openTodoItem(item)
     }
 
+    // Table Corner Radius     *CostilMagic*
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+                                        byRoundingCorners: [.topLeft, .topRight],
+                                        cornerRadii: CGSize(width: 16, height: 16))
+
+            let shape = CAShapeLayer()
+            shape.path = maskPath.cgPath
+            cell.layer.mask = shape
+        } else if indexPath.row == rootViewModel.todoListState.count {
+            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+                                        byRoundingCorners: [.bottomLeft, .bottomRight],
+                                        cornerRadii: CGSize(width: 16, height: 16))
+
+            let shape = CAShapeLayer()
+            shape.path = maskPath.cgPath
+            cell.layer.mask = shape
+        } else {
+            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+                                        byRoundingCorners: [.topLeft, .topRight],
+                                        cornerRadii: CGSize(width: 0, height: 0))
+
+            let shape = CAShapeLayer()
+            shape.path = maskPath.cgPath
+            cell.layer.mask = shape
+        }
+    }
+
     func updateData(){
         tableView.reloadData()
-
-        view.layoutIfNeeded()
     }
 
     func filterTodoList(list: [TodoItem]) -> ([TodoItem]){

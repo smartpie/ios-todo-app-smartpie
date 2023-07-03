@@ -70,6 +70,7 @@ class EditTodoItemViewController: UIViewController {
     private lazy var deadLineSwitch = UISwitch()
     private lazy var deadLineView = UIView()
     private let secondSeparatorView = SeparatorView()
+    private lazy var datePickerWrapper = UIView()
     private lazy var datePicker = UIDatePicker()
 
     private lazy var detailsStackView = UIStackView()
@@ -125,6 +126,7 @@ class EditTodoItemViewController: UIViewController {
         setupDeadLineSwitch()
         setupDeadLineView()
         setupSecondSeparatorView()
+        setupDatePickerWrapper()
         setupDatePicker()
 
         setupDetailsStackView()
@@ -268,6 +270,11 @@ class EditTodoItemViewController: UIViewController {
         secondSeparatorView.isHidden = true
     }
 
+    private func setupDatePickerWrapper() {
+        datePickerWrapper.translatesAutoresizingMaskIntoConstraints = false
+        datePickerWrapper.isHidden = true
+    }
+
     private func setupDatePicker() {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.backgroundColor = .orange
@@ -341,7 +348,9 @@ class EditTodoItemViewController: UIViewController {
         deadLineView.addSubview(deadLineStackView)
         deadLineView.addSubview(deadLineSwitch)
 
-        [importanceView, firstSeparatorView, deadLineView, secondSeparatorView, datePicker].forEach {
+        datePickerWrapper.addSubview(datePicker)
+
+        [importanceView, firstSeparatorView, deadLineView, secondSeparatorView, datePickerWrapper].forEach {
             detailsStackView.addArrangedSubview($0)
         }
 
@@ -364,7 +373,8 @@ class EditTodoItemViewController: UIViewController {
          │   │   │   └── deadLineButton
          │   │   └── deadLineSwitch
          │   ├── secondSeparator
-         │   └── DatePicker
+         │   └── DatePickerWrapper
+         │       └── DatePicker
          └── deleteButton
  */
 
@@ -397,9 +407,6 @@ class EditTodoItemViewController: UIViewController {
             importanceView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor),
 
             firstSeparatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
-            // Не смог понять, почему но вот на эти выделенные справа констраинты оно ругается, но при этом они полностью работают
-            firstSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),     // беды
-            firstSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16),  // беды
 
             deadLineStackView.leadingAnchor.constraint(equalTo: deadLineView.leadingAnchor, constant: 16),
             deadLineStackView.centerYAnchor.constraint(equalTo: deadLineView.centerYAnchor),
@@ -415,8 +422,6 @@ class EditTodoItemViewController: UIViewController {
             deadLineView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor),
 
             secondSeparatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
-            secondSeparatorView.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 16),    // беды
-            secondSeparatorView.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -16), // беды
 
             detailsStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 16),
             detailsStackView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -16),
@@ -428,8 +433,13 @@ class EditTodoItemViewController: UIViewController {
             deleteButton.heightAnchor.constraint(equalToConstant: 56),
             deleteButton.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor),
 
-            datePicker.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor, constant: 12),     // беды
-            datePicker.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor, constant: -12),  // беды
+            datePickerWrapper.leadingAnchor.constraint(equalTo: detailsStackView.leadingAnchor),
+            datePickerWrapper.trailingAnchor.constraint(equalTo: detailsStackView.trailingAnchor),
+
+            datePicker.leadingAnchor.constraint(equalTo: datePickerWrapper.leadingAnchor, constant: 12),
+            datePicker.trailingAnchor.constraint(equalTo: datePickerWrapper.trailingAnchor, constant: -12),
+            datePicker.topAnchor.constraint(equalTo: datePickerWrapper.topAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: datePickerWrapper.bottomAnchor),
         ])
     }
 
@@ -507,6 +517,7 @@ class EditTodoItemViewController: UIViewController {
                 isDatePickerToggled = false
                 secondSeparatorView.isHidden = true
                 datePicker.isHidden = true
+                datePickerWrapper.isHidden = true
                 defaultConfigureDatePicker()
 
 
@@ -536,6 +547,7 @@ class EditTodoItemViewController: UIViewController {
 
             secondSeparatorView.isHidden = !self.isDatePickerToggled
             datePicker.isHidden = !self.isDatePickerToggled
+            datePickerWrapper.isHidden = !self.isDatePickerToggled
 
             view.layoutIfNeeded()
         })

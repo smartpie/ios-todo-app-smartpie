@@ -31,7 +31,6 @@ extension RootViewModel {
     func fetchData(){
         do{
             try fileCache.loadTodosFromFile(fileNameJson: self.fileName)
-            print(fileCache.todoItems)
         } catch {
             print("Some error while fetching data \(error)")
         }
