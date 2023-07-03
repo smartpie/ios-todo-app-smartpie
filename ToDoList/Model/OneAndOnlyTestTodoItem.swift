@@ -1,7 +1,4 @@
 import Foundation
-import CocoaLumberjack
-import CocoaLumberjackSwift
-import TodoItem
 
 class TodoListHandler {
     static let fileCache = FileCache()
@@ -44,7 +41,6 @@ class TodoListHandler {
             } else {
                 todoItem = TodoListHandler.fileCache.todoItems[0]
                 print("Loaded to JSON")
-                DDLogWarn("Loaded from JSON");
             }
 
         } catch {

@@ -1,5 +1,4 @@
 import UIKit
-import TodoItem
 
 class EditTodoItemViewController: UIViewController {
     var viewModel: EditTodoItemViewModel

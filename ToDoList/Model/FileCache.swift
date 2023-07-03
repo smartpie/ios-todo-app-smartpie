@@ -1,5 +1,4 @@
 import Foundation
-import TodoItem
 
 enum FileCacheErrors: Error {
     case unableToFindDocumentsDirectory

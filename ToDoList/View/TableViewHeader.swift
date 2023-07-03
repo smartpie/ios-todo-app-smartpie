@@ -6,7 +6,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
 
     static let identifier: String = "TableViewHeaderCell"
 
-    private var textView = UILabel()
+    public var textView = UILabel()
     private let buttonView = UIButton()
 
     override init(reuseIdentifier: String?) {
