@@ -62,5 +62,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
         rootViewModel.switchPresentationStatus()
         buttonView.isSelected.toggle()
         self.valueDidChange?()
+
+        layoutIfNeeded()
     }
 }

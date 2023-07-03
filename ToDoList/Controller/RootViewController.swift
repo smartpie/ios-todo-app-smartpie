@@ -82,6 +82,9 @@ class RootViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.backgroundColor = UIColor.backPrimary
+//        tableView.layer.cornerRadius = 256
+//        tableView.layer.masksToBounds = true
+//        tableView.layer.borderWidth = 2
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: TableViewHeader.identifier)
         tableView.register(CellView.self, forCellReuseIdentifier: CellView.identifier)
         tableView.register(AddCellView.self, forCellReuseIdentifier: AddCellView.identifier)
@@ -153,6 +156,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
     func updateData(){
         tableView.reloadData()
+
+        view.layoutIfNeeded()
     }
 
     func filterTodoList(list: [TodoItem]) -> ([TodoItem]){

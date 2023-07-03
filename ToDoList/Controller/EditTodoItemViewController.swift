@@ -97,7 +97,7 @@ class EditTodoItemViewController: UIViewController {
 
         setupMainView()
         constructMainView()
-        constructMainViewConstraints()
+        setupMainViewConstraints()
 
         registerKeyboardNotifications()
         addTapGestureRecognizerToDismissKeyboard()
@@ -341,7 +341,7 @@ class EditTodoItemViewController: UIViewController {
         deadLineView.addSubview(deadLineStackView)
         deadLineView.addSubview(deadLineSwitch)
 
-        [importanceView, firstSeparatorView, deadLineView, secondSeparatorView, datePicker].map {
+        [importanceView, firstSeparatorView, deadLineView, secondSeparatorView, datePicker].forEach {
             detailsStackView.addArrangedSubview($0)
         }
 
@@ -369,7 +369,7 @@ class EditTodoItemViewController: UIViewController {
  */
 
 // MARK: - UI Constraints
-    private func constructMainViewConstraints() {
+    private func setupMainViewConstraints() {
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -583,7 +583,7 @@ class EditTodoItemViewController: UIViewController {
     private func addTapGestureRecognizerToDismissKeyboard() {
 //        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
 //        detailsStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        [importanceView, deadLineView].map {    // Как эту функцию вообще нормально сделать?
+        [importanceView, deadLineView].forEach {    // Как эту функцию вообще нормально сделать?
                                                 // У меня клава выключается ток от свайпа де факто
             $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         }
