@@ -29,8 +29,8 @@ class RootViewModel: UIViewController {
 extension RootViewModel {
     // MARK: - Main functions
     func fetchData(){
-        do{
-            try fileCache.loadTodosFromFile(fileNameJson: self.fileName)
+        do {
+            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
         } catch {
             print("Some error while fetching data \(error)")
         }
@@ -44,22 +44,38 @@ extension RootViewModel {
     }
 
     func saveTodoItem(_ todoItem: TodoItem){
-        do{
-            self.fileCache.addTodoItem(todoItem)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
-            self.updateTodoListState()
-        } catch {
-            print("Some error while saving data: \(error)")
+        DispatchQueue.main.async {
+            do{
+                self.fileCache.addTodoItem(todoItem)
+                try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+                self.updateTodoListState()
+            } catch {
+                print("Some error while saving data: \(error)")
+            }
         }
     }
 
     func removeTodoItem(id: String){
+        DispatchQueue.main.async {
+            do{
+                self.fileCache.removeTodoItemById(id)
+                try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+                self.updateTodoListState()
+            } catch {
+                print("Some error while trying to delete todoItem and save changed data: \(error)")
+            }
+        }
+    }
+
+    func deleteRow(at indexPath: IndexPath){
+        let id = self.todoListState[indexPath.row].id
         do{
             self.fileCache.removeTodoItemById(id)
             try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
-            self.updateTodoListState()
+            self.todoListState.remove(at: indexPath.row)
+            self.viewController?.deleteRow(at: indexPath)
         } catch {
-            print("Some error while trying to delete todoItem and save changed data: \(error)")
+            print("Error: deleteToDo()")
         }
     }
 
@@ -75,6 +91,11 @@ extension RootViewModel {
         self.saveTodoItem(newTodo)
     }
 
+    func switchIsDoneStateSwipe(_ oldTodo: TodoItem, _ indexPath: IndexPath) {
+        switchIsDoneState(oldTodo)
+        self.viewController?.reloadRow(at: indexPath)
+    }
+
     //MARK: - TodoList Update
     func updateTodoListState(){
         switch status{
@@ -83,7 +104,7 @@ extension RootViewModel {
         case Status.showAll:
             self.todoListState = self.fileCache.todoItems
         }
-        self.viewController?.updateData()
+        self.viewController?.reloadData()
     }
 
     func switchPresentationStatus() {

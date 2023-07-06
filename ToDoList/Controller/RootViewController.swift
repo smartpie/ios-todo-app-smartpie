@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 var rootViewModel: RootViewModel = RootViewModel()
 
 class RootViewController: UIViewController {
@@ -28,6 +29,9 @@ class RootViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         setupConstraintForAddTodoItemButton()
+//        tableView.reloadData()
+//        view.setNeedsLayout()
+//        tableView.reloadRows(at: <#T##[IndexPath]#>, with: .none)
     }
 
     // MARK: - Navigation
@@ -152,37 +156,51 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         rootViewModel.openTodoItem(item)
     }
 
-    // Table Corner Radius     *CostilMagic*
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let maskPath = UIBezierPath(roundedRect: cell.bounds,
-                                        byRoundingCorners: [.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 16, height: 16))
+    //MARK: - Table Corner Radius     *CostilMagic*
+/*
+ Не робит. Вернее робит, но беды про поворте экрана, ибо функция срабатывает до момента реюза/переотрисовки(ну или чего-то
+ такого) у ячеек, оттого на момент срабатывания bound ячейки старые и беды лезут. Дай бог потом найду решение
+ */
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        tableView.reloadRows(at: [indexPath], with: .none)
+//
+//        if indexPath.row == 0 {
+//            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+//                                        byRoundingCorners: [.topLeft, .topRight],
+//                                        cornerRadii: CGSize(width: 16, height: 16))
+//
+//            let shape = CAShapeLayer()
+//            shape.path = maskPath.cgPath
+//            cell.layer.mask = shape
+//        } else if indexPath.row == rootViewModel.todoListState.count {
+//            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+//                                        byRoundingCorners: [.bottomLeft, .bottomRight],
+//                                        cornerRadii: CGSize(width: 16, height: 16))
+//
+//            let shape = CAShapeLayer()
+//            shape.path = maskPath.cgPath
+//            cell.layer.mask = shape
+//        } else {
+//            let maskPath = UIBezierPath(roundedRect: cell.bounds,
+//                                        byRoundingCorners: [.topLeft, .topRight],
+//                                        cornerRadii: CGSize(width: 0, height: 0))
+//
+//            let shape = CAShapeLayer()
+//            shape.path = maskPath.cgPath
+//            cell.layer.mask = shape
+//        }
+//    }
 
-            let shape = CAShapeLayer()
-            shape.path = maskPath.cgPath
-            cell.layer.mask = shape
-        } else if indexPath.row == rootViewModel.todoListState.count {
-            let maskPath = UIBezierPath(roundedRect: cell.bounds,
-                                        byRoundingCorners: [.bottomLeft, .bottomRight],
-                                        cornerRadii: CGSize(width: 16, height: 16))
-
-            let shape = CAShapeLayer()
-            shape.path = maskPath.cgPath
-            cell.layer.mask = shape
-        } else {
-            let maskPath = UIBezierPath(roundedRect: cell.bounds,
-                                        byRoundingCorners: [.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 0, height: 0))
-
-            let shape = CAShapeLayer()
-            shape.path = maskPath.cgPath
-            cell.layer.mask = shape
-        }
+    func reloadData(){
+        tableView.reloadData()
     }
 
-    func updateData(){
-        tableView.reloadData()
+    func reloadRow(at indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .fade) // Лучше, чем было, но всё ещё как-то печально
+    }
+
+    func deleteRow(at indexPath: IndexPath) {
+        tableView.deleteRows(at: [indexPath], with: .right)
     }
 
     func filterTodoList(list: [TodoItem]) -> ([TodoItem]){
@@ -191,6 +209,55 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return rootViewModel.fileCache.todoItems.filter( {!$0.isDone} )
         }
+    }
+
+    // MARK: Swipes lead
+    func tableView(_ tableView: UITableView,leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.row != rootViewModel.todoListState.count {
+            // Toggle action
+            let toggle = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+                let item  = rootViewModel.todoListState[indexPath.row]
+                rootViewModel.switchIsDoneStateSwipe(item, indexPath)
+                completionHandler(true)
+            }
+            if rootViewModel.todoListState[indexPath.row].isDone{
+                toggle.image = UIImage(systemName: "circle")
+                toggle.backgroundColor = UIColor.colorGray
+            } else{
+                toggle.image = UIImage(systemName: "checkmark.circle.fill")
+                toggle.backgroundColor = UIColor.colorGreen
+            }
+
+            return UISwipeActionsConfiguration(actions: [toggle])
+        }
+
+        return UISwipeActionsConfiguration(actions: [])
+    }
+
+    // MARK: Swipes trail
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.row != rootViewModel.todoListState.count {
+            // Info action
+            let info = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+                let item  = rootViewModel.todoListState[indexPath.row]
+                rootViewModel.openTodoItem(item)
+                completionHandler(true)
+            }
+            info.backgroundColor = UIColor.colorGrayLight
+            info.image = UIImage(systemName: "info.circle.fill")
+            // Trash action
+            let trash = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
+//                let item  = rootViewModel.todoListState[indexPath.row]
+                rootViewModel.deleteRow(at: indexPath)
+                completionHandler(true)
+            }
+            trash.backgroundColor = UIColor.colorRed
+            trash.image = UIImage(systemName: "trash.fill")
+
+            return UISwipeActionsConfiguration(actions: [trash, info])
+        }
+
+        return UISwipeActionsConfiguration(actions: [])
     }
 
     @objc func AddCellTapped(){

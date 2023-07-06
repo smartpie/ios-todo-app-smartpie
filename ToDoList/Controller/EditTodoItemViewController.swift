@@ -31,26 +31,9 @@ class EditTodoItemViewController: UIViewController {
             case .important:
                 importanceControl.selectedSegmentIndex = 2
             }
-
-//            print("importance set")
         }
     }
-    var currentDeadline: Date? {
-        didSet {
-            if let deadline = currentDeadline {
-                deadLineSwitch.isOn = true
-                deadLineDateButton.setTitle(
-                    deadline.dateForLabel,
-                    for: .normal
-                )
-                deadLineDateButton.isHidden = false
-                deadLineDateButton.alpha = 1
-                datePicker.date = deadline
-            }
-
-//            print("deadLine set")
-        }
-    }
+    var currentDeadLine: Date? = nil
     var todoItem: TodoItem? = nil
 
 
@@ -58,20 +41,20 @@ class EditTodoItemViewController: UIViewController {
     private lazy var scrollView = UIScrollView()
     private lazy var wrapperView = UIView()
 
-    lazy var textView = UITextView()
+    public var textView = UITextView()
 
     private lazy var importanceLabel = UILabel()
     private lazy var importanceControl = UISegmentedControl()
     private lazy var importanceView = UIView()
     private let firstSeparatorView = SeparatorView()
     private lazy var deadLineLabel = UILabel()
-    private lazy var deadLineDateButton = UIButton()
+    public lazy var deadLineDateButton = UIButton()
     private lazy var deadLineStackView = UIStackView()
-    private lazy var deadLineSwitch = UISwitch()
+    public lazy var deadLineSwitch = UISwitch()
     private lazy var deadLineView = UIView()
     private let secondSeparatorView = SeparatorView()
     private lazy var datePickerWrapper = UIView()
-    private lazy var datePicker = UIDatePicker()
+    public lazy var datePicker = UIDatePicker()
 
     private lazy var detailsStackView = UIStackView()
     
@@ -300,7 +283,7 @@ class EditTodoItemViewController: UIViewController {
         if let nextDay = calendar.date(byAdding: .day, value: 1, to: selectedDate) {
             datePicker.date = nextDay
             deadLineDateButton.setTitle(nextDay.dateForLabel, for: .normal)
-            currentDeadline = nextDay
+            currentDeadLine = nextDay
         }
     }
 
@@ -455,7 +438,7 @@ class EditTodoItemViewController: UIViewController {
             id: viewModel.todoItemState.id,
             text: textView.text,
             importance: currentImportance ?? .basic,
-            deadLine: currentDeadline ?? nil)
+            deadLine: currentDeadLine ?? nil)
         )
 
         dismiss(animated: true)
@@ -486,7 +469,7 @@ class EditTodoItemViewController: UIViewController {
     @objc private func datePickerValueChanged() {
         dismissKeyboard()
         deadLineDateButton.setTitle(datePicker.date.dateForLabel, for: .normal)
-        currentDeadline = datePicker.date
+        currentDeadLine = datePicker.date
 
         if !textView.text.isEmpty && textView.textColor != UIColor.labelTertiary {
             navigationItem.rightBarButtonItem?.isEnabled = true
@@ -531,7 +514,7 @@ class EditTodoItemViewController: UIViewController {
         }
 
         if deadLineSwitch.isOn == false {
-            currentDeadline = nil
+//            currentDeadline = nil
         } else {
             defaultConfigureDatePicker()
         }
@@ -602,7 +585,7 @@ class EditTodoItemViewController: UIViewController {
     }
 
     private func checkTodoItem() {
-        if todoItem != nil && currentText != "" {
+        if currentText != "" {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false

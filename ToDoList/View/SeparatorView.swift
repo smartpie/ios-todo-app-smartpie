@@ -3,7 +3,6 @@ import UIKit
 final class SeparatorView: UIView {
     init() {
         super.init(frame: .zero)
-//        backgroundColor = UIColor(named: "Support.Separator")
         translatesAutoresizingMaskIntoConstraints = false
 
         let line = UIView()

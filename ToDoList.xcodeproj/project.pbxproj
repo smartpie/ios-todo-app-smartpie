@@ -10,7 +10,6 @@
 		CA24D1352A45C47A002C565D /* UIFont+Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1342A45C47A002C565D /* UIFont+Extencion.swift */; };
 		CA24D1372A460B57002C565D /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1362A460B57002C565D /* SeparatorView.swift */; };
 		CA24D1392A4642C2002C565D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1382A4642C2002C565D /* Date+Extension.swift */; };
-		CA29A1FE2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */; };
 		CA4875602A433F8400A38E3C /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48755F2A433F8400A38E3C /* EditTodoItemViewController.swift */; };
 		CA4CB5942A44D9930093F371 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4CB5932A44D9930093F371 /* CellView.swift */; };
 		CA683D6A2A4F7F40003EA596 /* AddCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D692A4F7F40003EA596 /* AddCellView.swift */; };
@@ -43,7 +42,6 @@
 		CA24D1342A45C47A002C565D /* UIFont+Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extencion.swift"; sourceTree = "<group>"; };
 		CA24D1362A460B57002C565D /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CA24D1382A4642C2002C565D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneAndOnlyTestTodoItem.swift; sourceTree = "<group>"; };
 		CA48755F2A433F8400A38E3C /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		CA4CB5932A44D9930093F371 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		CA683D692A4F7F40003EA596 /* AddCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellView.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			children = (
 				CAB0F59C2A5342D5009503D3 /* TodoItem.swift */,
 				CAB5B2182A387F6200DC0A05 /* FileCache.swift */,
-				CA29A1FD2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,7 +282,6 @@
 				CACB2C432A4D9B21009EE84B /* RootViewModel.swift in Sources */,
 				CA24D1372A460B57002C565D /* SeparatorView.swift in Sources */,
 				CAC1D6702A379EEC005A45BC /* RootViewController.swift in Sources */,
-				CA29A1FE2A465F4E0099340C /* OneAndOnlyTestTodoItem.swift in Sources */,
 				CAC1D66C2A379EEC005A45BC /* AppDelegate.swift in Sources */,
 				CA24D1392A4642C2002C565D /* Date+Extension.swift in Sources */,
 				CA24D1352A45C47A002C565D /* UIFont+Extencion.swift in Sources */,
@@ -387,6 +383,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -440,6 +437,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

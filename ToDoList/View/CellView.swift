@@ -103,8 +103,6 @@ final class CellView: UITableViewCell {
         isDoneView.addTarget(self, action: #selector(isDoneButtonTapped), for: .touchUpInside)
 
         // main Part
-
-
         setupMainView()
         setupTextStackView()
         setupDeadLineStackView()
@@ -173,14 +171,6 @@ final class CellView: UITableViewCell {
             mainView.trailingAnchor.constraint(equalTo: chevronView.leadingAnchor, constant: -16),
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-
-//            importanceView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor),
-//            importanceView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
-//
-//            textStackView.leadingAnchor.constraint(equalTo: importanceView.trailingAnchor),
-//            textStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
-//            textStackView.topAnchor.constraint(equalTo: mainView.topAnchor),
-//            textStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
 
             chevronView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

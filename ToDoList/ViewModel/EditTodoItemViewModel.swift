@@ -1,20 +1,20 @@
 import UIKit
 
+@MainActor
 class EditTodoItemViewModel {
 
     weak var viewController: EditTodoItemViewController?
 
-    var todoItem: TodoItem?
     var todoItemState: TodoItem
 
     init(_ item: TodoItem) {
-        self.todoItem = item
         self.todoItemState = item
 
         loadData()
     }
 }
 
+@MainActor
 extension EditTodoItemViewModel {
 
     func saveItem(_ item: TodoItem){
@@ -28,11 +28,21 @@ extension EditTodoItemViewModel {
     }
 
     func loadData() {
-        if !todoItemState.text.isEmpty{
+        if !todoItemState.text.isEmpty {
             viewController?.textView.text = todoItemState.text
             viewController?.textView.textColor = UIColor.labelPrimary
         }
         viewController?.currentImportance = todoItemState.importance
-        viewController?.currentDeadline = todoItemState.deadLine
+        if todoItemState.deadLine != nil {
+            viewController?.deadLineSwitch.isOn = true
+            viewController?.deadLineDateButton.setTitle(
+                todoItemState.deadLine?.dateForLabel,
+                for: .normal
+            )
+            viewController?.deadLineDateButton.isHidden = false
+            viewController?.deadLineDateButton.alpha = 1
+            viewController?.datePicker.date = todoItemState.deadLine ?? Date()
+        }
+        viewController?.currentDeadLine = todoItemState.deadLine
     }
 }
