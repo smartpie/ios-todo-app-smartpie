@@ -6,9 +6,12 @@ class EditTodoItemViewModel {
     weak var viewController: EditTodoItemViewController?
 
     var todoItemState: TodoItem
+    var isNew: Bool
 
     init(_ item: TodoItem) {
         self.todoItemState = item
+
+        self.isNew = item.text.isEmpty
 
         loadData()
     }
@@ -18,7 +21,7 @@ class EditTodoItemViewModel {
 extension EditTodoItemViewModel {
 
     func saveItem(_ item: TodoItem){
-        rootViewModel.saveTodoItem(item)
+        rootViewModel.saveTodoItem(item, isNew)
         viewController?.dismiss(animated: true)
     }
 
