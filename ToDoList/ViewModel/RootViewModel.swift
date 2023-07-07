@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 
 enum Status {
     case showAll
@@ -28,12 +29,27 @@ class RootViewModel: UIViewController {
 
 extension RootViewModel {
     // MARK: - Main functions
-    func fetchData(){
+    func fetchData() {
         do {
             try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
         } catch {
             print("Some error while fetching data \(error)")
         }
+
+        let taska = Task(priority: .background) { [weak self] in
+            guard let self = self else { return }
+            do {
+                let net = DefaultNetworkingService()
+                let nothing = try await net.getList()
+                
+            } catch {
+                print("Some Error")
+            }
+        }
+
+//        taska.cancel()
+        // Если раскомментить, то такска кэенсельнётся(удивительно) и оно даст ошибку в консоль
+        // Также ошибка будет, если сервер ошибку выдаст, правда тогда мы код ответа сервера ещё в консольке увидим
     }
 
     func openTodoItem(_ todoItem: TodoItem = TodoItem(text: "")){
