@@ -54,14 +54,12 @@ extension RootViewModel {
     }
 
     func saveTodoItem(_ todoItem: TodoItem, _ isNew: Bool = false){
-        DispatchQueue.main.async {
-            do{
-                self.fileCache.addTodoItem(todoItem)
-                try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
-                self.updateTodoListState()
-            } catch {
-                print("Some error while saving data: \(error)")
-            }
+        do{
+            self.fileCache.addTodoItem(todoItem)
+            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            self.updateTodoListState()
+        } catch {
+            print("Some error while saving data: \(error)")
         }
 
         if fileCache.isDirty {
@@ -74,14 +72,12 @@ extension RootViewModel {
     }
 
     func removeTodoItem(id: String){
-        DispatchQueue.main.async {
-            do {
-                self.fileCache.removeTodoItemById(id)
-                try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
-                self.updateTodoListState()
-            } catch {
-                print("Some error while trying to delete todoItem and save changed data: \(error)")
-            }
+        do {
+            self.fileCache.removeTodoItemById(id)
+            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            self.updateTodoListState()
+        } catch {
+            print("Some error while trying to delete todoItem and save changed data: \(error)")
         }
 
         if fileCache.isDirty {
