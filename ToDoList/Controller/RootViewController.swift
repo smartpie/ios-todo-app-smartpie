@@ -23,6 +23,8 @@ class RootViewController: UIViewController {
         rootViewModel.viewController = self
         rootViewModel.fetchData()
         rootViewModel.updateTodoListState()
+
+        
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

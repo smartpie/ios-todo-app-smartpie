@@ -14,6 +14,9 @@
 		CA4CB5942A44D9930093F371 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4CB5932A44D9930093F371 /* CellView.swift */; };
 		CA683D6A2A4F7F40003EA596 /* AddCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D692A4F7F40003EA596 /* AddCellView.swift */; };
 		CA683D6C2A4F809E003EA596 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */; };
+		CA7352E32A571D1800AAAD19 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E22A571D1800AAAD19 /* URLSession+Extension.swift */; };
+		CA7352E52A572BE500AAAD19 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E42A572BE500AAAD19 /* NetworkingService.swift */; };
+		CA7352E72A572BF800AAAD19 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E62A572BF800AAAD19 /* DefaultNetworkingService.swift */; };
 		CAB0F59D2A5342D5009503D3 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0F59C2A5342D5009503D3 /* TodoItem.swift */; };
 		CAB0F59F2A5342DB009503D3 /* TodoItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0F59E2A5342DB009503D3 /* TodoItemTests.swift */; };
 		CAB5B2192A387F6200DC0A05 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5B2182A387F6200DC0A05 /* FileCache.swift */; };
@@ -46,6 +49,9 @@
 		CA4CB5932A44D9930093F371 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		CA683D692A4F7F40003EA596 /* AddCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellView.swift; sourceTree = "<group>"; };
 		CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
+		CA7352E22A571D1800AAAD19 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		CA7352E42A572BE500AAAD19 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		CA7352E62A572BF800AAAD19 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
 		CAB0F59C2A5342D5009503D3 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		CAB0F59E2A5342DB009503D3 /* TodoItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemTests.swift; sourceTree = "<group>"; };
 		CAB5B2182A387F6200DC0A05 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
@@ -112,6 +118,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		CA7352E12A56DA0000AAAD19 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CA7352E22A571D1800AAAD19 /* URLSession+Extension.swift */,
+				CA7352E42A572BE500AAAD19 /* NetworkingService.swift */,
+				CA7352E62A572BF800AAAD19 /* DefaultNetworkingService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		CAC1D65F2A379EEC005A45BC = {
 			isa = PBXGroup;
 			children = (
@@ -133,12 +149,13 @@
 		CAC1D66A2A379EEC005A45BC /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				CA7352E12A56DA0000AAAD19 /* Networking */,
 				CAC1D6792A379EEE005A45BC /* Info.plist */,
 				CAC1D66B2A379EEC005A45BC /* AppDelegate.swift */,
 				CAC1D66D2A379EEC005A45BC /* SceneDelegate.swift */,
 				CA16A1772A42E8B3001EABAF /* Controller */,
-				CA16A1762A42E8A1001EABAF /* View */,
 				CACB2C412A4D9B02009EE84B /* ViewModel */,
+				CA16A1762A42E8A1001EABAF /* View */,
 				CAC1D69B2A37A10B005A45BC /* Model */,
 				CA24D1312A45C3AF002C565D /* Assets */,
 				CAC1D6762A379EEE005A45BC /* LaunchScreen.storyboard */,
@@ -281,12 +298,15 @@
 				CA4875602A433F8400A38E3C /* EditTodoItemViewController.swift in Sources */,
 				CACB2C432A4D9B21009EE84B /* RootViewModel.swift in Sources */,
 				CA24D1372A460B57002C565D /* SeparatorView.swift in Sources */,
+				CA7352E32A571D1800AAAD19 /* URLSession+Extension.swift in Sources */,
+				CA7352E72A572BF800AAAD19 /* DefaultNetworkingService.swift in Sources */,
 				CAC1D6702A379EEC005A45BC /* RootViewController.swift in Sources */,
 				CAC1D66C2A379EEC005A45BC /* AppDelegate.swift in Sources */,
 				CA24D1392A4642C2002C565D /* Date+Extension.swift in Sources */,
 				CA24D1352A45C47A002C565D /* UIFont+Extencion.swift in Sources */,
 				CAB5B2192A387F6200DC0A05 /* FileCache.swift in Sources */,
 				CACB2C452A4E2D9F009EE84B /* EditTodoItemViewModel.swift in Sources */,
+				CA7352E52A572BE500AAAD19 /* NetworkingService.swift in Sources */,
 				CA683D6C2A4F809E003EA596 /* TableViewHeader.swift in Sources */,
 				CAC1D66E2A379EEC005A45BC /* SceneDelegate.swift in Sources */,
 				CACB2C402A4D95F2009EE84B /* UIColor+Extencion.swift in Sources */,
