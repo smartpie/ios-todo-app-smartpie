@@ -1,9 +1,9 @@
 import Foundation
 
 enum Importance: String {
-    case important = "важная"
-    case basic = "обычная"
-    case low = "неважная"
+    case important = "important"
+    case basic = "basic"
+    case low = "low"
 }
 
 struct TodoItem: Equatable {
@@ -23,7 +23,7 @@ struct TodoItem: Equatable {
          deadLine: Date? = nil,
          isDone: Bool = false,
          creationDate: Date = Date(),
-         lastChangeDate: Date? = nil) {
+         lastChangeDate: Date? = Date()) {
         self.id = id
         self.importance = importance
         self.deadLine = deadLine
@@ -45,8 +45,8 @@ extension TodoItem {
         if let tempText = properties[kText] as? String, tempText != "" {
             temp[kText] = tempText
         } else { return nil }
-        
-        if properties[kImportance] == nil { temp[kImportance] = Importance(rawValue: "обычная") }
+
+        if properties[kImportance] == nil { temp[kImportance] = Importance(rawValue: "basic") }
         else if let tempImportanceRaw = properties[kImportance] as? String,
                 let tempImportance = Importance(rawValue: tempImportanceRaw) { temp[kImportance] = tempImportance }
         else { return nil }
@@ -90,6 +90,21 @@ extension TodoItem {
 
         return tempDictionary
     }
+
+    func getJsonForNet(deviceID: String) -> [String: Any] {
+        var tempDictionary: [String: Any] = [:]
+
+        tempDictionary[kId] = id
+        tempDictionary[kText] = text
+        tempDictionary[kImportance] = importance.rawValue
+        if deadLine != nil { tempDictionary[kDeadline] = Int(deadLine!.timeIntervalSince1970) }
+        tempDictionary[kIsDone] = isDone
+        tempDictionary[kCreationDate] = Int(creationDate.timeIntervalSince1970)
+        if lastChangeDate != nil { tempDictionary[kLastChangeDate] = Int(lastChangeDate!.timeIntervalSince1970) }
+        tempDictionary[kDeviceID] = deviceID
+
+        return tempDictionary
+    }
 }
 
 // MARK: - TodoItem JSON
@@ -108,7 +123,7 @@ extension TodoItem {
         if csvSplit[2] != "" {
             if let tempImportance = Importance(rawValue: csvSplit[2]) { temp[kImportance] = tempImportance }
             else { return nil }
-        } else { temp[kImportance] = Importance(rawValue: "обычная") }
+        } else { temp[kImportance] = Importance(rawValue: "basic") }
         
         if csvSplit[3] != "" {
             if let dateSince1970 = Double(csvSplit[3]) { temp[kDeadline] = Date(timeIntervalSince1970: dateSince1970) }
@@ -165,3 +180,4 @@ private let kDeadline = "deadline"
 private let kIsDone = "done"
 private let kCreationDate = "created_at"
 private let kLastChangeDate = "changed_at"
+private let kDeviceID = "last_updated_by"

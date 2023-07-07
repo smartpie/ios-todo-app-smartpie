@@ -12,6 +12,14 @@ class FileCache {
     static let header = "id;text;importance;deadLine;isDone;creationDate;lastChangeDate"
     
     private(set) var todoItems: [TodoItem] = []
+    var isDirty: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isDirty")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isDirty")
+        }
+    }
 
     @discardableResult
     func addTodoItem(_ newTodo: TodoItem) -> TodoItem? {
