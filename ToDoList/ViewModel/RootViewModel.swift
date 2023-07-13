@@ -32,7 +32,15 @@ extension RootViewModel {
     // MARK: - Main functions
     func fetchData() {
         do {
-            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
+            // JSON
+//            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
+            // CoreData
+            let todoList = CoreDataManager.shared.fetchTodoList()
+            for item in todoList {
+                self.fileCache.addTodoItem(item)
+            }
+            // SQLite
+            // coming soon...
         } catch {
             print("Some error while fetching data \(error)")
         }
@@ -56,7 +64,16 @@ extension RootViewModel {
     func saveTodoItem(_ todoItem: TodoItem, _ isNew: Bool = false){
         do{
             self.fileCache.addTodoItem(todoItem)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+            if isNew {
+                CoreDataManager.shared.createTodo(todoItem)
+            } else {
+                CoreDataManager.shared.updateTodo(todoItem)
+            }
+            // SQLite
+            // coming soon...
             self.updateTodoListState()
         } catch {
             print("Some error while saving data: \(error)")
@@ -74,7 +91,12 @@ extension RootViewModel {
     func removeTodoItem(id: String){
         do {
             self.fileCache.removeTodoItemById(id)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+            CoreDataManager.shared.deleteTodo(id: id)
+            // SQLite
+            // coming soon...
             self.updateTodoListState()
         } catch {
             print("Some error while trying to delete todoItem and save changed data: \(error)")
@@ -93,7 +115,12 @@ extension RootViewModel {
         let id = self.todoListState[indexPath.row].id
         do {
             self.fileCache.removeTodoItemById(id)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+            CoreDataManager.shared.deleteTodo(id: id)
+            // SQLite
+            // coming soon...
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         } catch {
@@ -156,7 +183,15 @@ extension RootViewModel {
                 for item in todoList {
                     self.fileCache.addTodoItem(item)
                 }
-                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // JSON
+//                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // CoreData
+                CoreDataManager.shared.deleteTodoList()
+                for item in todoList {
+                    CoreDataManager.shared.createTodo(item)
+                }
+                // SQLite
+                // coming soon...
                 self.fileCache.isDirty = false
 
                 updateTodoListState()
@@ -175,8 +210,15 @@ extension RootViewModel {
                 for item in todoList {
                     self.fileCache.addTodoItem(item)
                 }
-                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
-
+                // JSON
+//                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // CoreData
+                CoreDataManager.shared.deleteTodoList()
+                for item in todoList {
+                    CoreDataManager.shared.createTodo(item)
+                }
+                // SQLite
+                // coming soon...
                 updateTodoListState()
             } catch {
                 print("Error while loading data from sever")
