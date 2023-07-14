@@ -130,7 +130,3 @@ extension FileCache {
     }
 }
 
-// MARK: - CoreData
-extension FileCache {
-    
-}

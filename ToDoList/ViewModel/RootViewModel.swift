@@ -11,6 +11,7 @@ class RootViewModel: UIViewController {
     var fileName = "TodoItems.json"
     let networkingService = DefaultNetworkingService(deviceID: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown")
     var fileCache = FileCache()
+    let sql = SQLiteManager.shared
     weak var viewController: RootViewController?
 
     var todoListState: [TodoItem] = []
@@ -35,12 +36,14 @@ extension RootViewModel {
             // JSON
 //            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
             // CoreData
-            let todoList = CoreDataManager.shared.fetchTodoList()
+//            let todoList = CoreDataManager.shared.fetchTodoList()
+            // SQLite
+            let todoList = try sql.fetchTodoList()
+
             for item in todoList {
                 self.fileCache.addTodoItem(item)
             }
-            // SQLite
-            // coming soon...
+
         } catch {
             print("Some error while fetching data \(error)")
         }
@@ -67,13 +70,18 @@ extension RootViewModel {
             // JSON
 //            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
             // CoreData
-            if isNew {
-                CoreDataManager.shared.createTodo(todoItem)
-            } else {
-                CoreDataManager.shared.updateTodo(todoItem)
-            }
+//            if isNew {
+//                CoreDataManager.shared.createTodo(todoItem)
+//            } else {
+//                CoreDataManager.shared.updateTodo(todoItem)
+//            }
             // SQLite
-            // coming soon...
+            if isNew {
+                try sql.createTodo(todoItem)
+            } else {
+                try sql.updateTodo(todoItem)
+            }
+
             self.updateTodoListState()
         } catch {
             print("Some error while saving data: \(error)")
@@ -94,9 +102,10 @@ extension RootViewModel {
             // JSON
 //            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
             // CoreData
-            CoreDataManager.shared.deleteTodo(id: id)
+//            CoreDataManager.shared.deleteTodo(id: id)
             // SQLite
-            // coming soon...
+            try sql.deleteTodo(id: id)
+
             self.updateTodoListState()
         } catch {
             print("Some error while trying to delete todoItem and save changed data: \(error)")
@@ -118,9 +127,10 @@ extension RootViewModel {
             // JSON
 //            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
             // CoreData
-            CoreDataManager.shared.deleteTodo(id: id)
+//            CoreDataManager.shared.deleteTodo(id: id)
             // SQLite
-            // coming soon...
+            try sql.deleteTodo(id: id)
+
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         } catch {
@@ -186,12 +196,16 @@ extension RootViewModel {
                 // JSON
 //                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
                 // CoreData
-                CoreDataManager.shared.deleteTodoList()
-                for item in todoList {
-                    CoreDataManager.shared.createTodo(item)
-                }
+//                CoreDataManager.shared.deleteTodoList()
+//                for item in todoList {
+//                    CoreDataManager.shared.createTodo(item)
+//                }
                 // SQLite
-                // coming soon...
+                try sql.deleteTodoList()
+                for item in todoList {
+                    try sql.createTodo(item)
+                }
+
                 self.fileCache.isDirty = false
 
                 updateTodoListState()
@@ -213,12 +227,16 @@ extension RootViewModel {
                 // JSON
 //                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
                 // CoreData
-                CoreDataManager.shared.deleteTodoList()
-                for item in todoList {
-                    CoreDataManager.shared.createTodo(item)
-                }
+//                CoreDataManager.shared.deleteTodoList()
+//                for item in todoList {
+//                    CoreDataManager.shared.createTodo(item)
+//                }
                 // SQLite
-                // coming soon...
+                try sql.deleteTodoList()
+                for item in todoList {
+                    try sql.createTodo(item)
+                }
+
                 updateTodoListState()
             } catch {
                 print("Error while loading data from sever")

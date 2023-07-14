@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             } else {
-                print("DB url: \(storeDescription.url?.absoluteString)")
+                print("CoreData DB url: \(storeDescription.url?.absoluteString)")
             }
         })
         return container
