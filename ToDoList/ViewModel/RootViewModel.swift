@@ -11,6 +11,7 @@ class RootViewModel: UIViewController {
     var fileName = "TodoItems.json"
     let networkingService = DefaultNetworkingService(deviceID: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown")
     var fileCache = FileCache()
+    let sql = SQLiteManager.shared
     weak var viewController: RootViewController?
 
     var todoListState: [TodoItem] = []
@@ -32,7 +33,17 @@ extension RootViewModel {
     // MARK: - Main functions
     func fetchData() {
         do {
-            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
+            // JSON
+//            try self.fileCache.loadTodosFromFile(fileNameJson: self.fileName)
+            // CoreData
+//            let todoList = CoreDataManager.shared.fetchTodoList()
+            // SQLite
+            let todoList = try sql.fetchTodoList()
+
+            for item in todoList {
+                self.fileCache.addTodoItem(item)
+            }
+
         } catch {
             print("Some error while fetching data \(error)")
         }
@@ -56,7 +67,21 @@ extension RootViewModel {
     func saveTodoItem(_ todoItem: TodoItem, _ isNew: Bool = false){
         do{
             self.fileCache.addTodoItem(todoItem)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+//            if isNew {
+//                CoreDataManager.shared.createTodo(todoItem)
+//            } else {
+//                CoreDataManager.shared.updateTodo(todoItem)
+//            }
+            // SQLite
+            if isNew {
+                try sql.createTodo(todoItem)
+            } else {
+                try sql.updateTodo(todoItem)
+            }
+
             self.updateTodoListState()
         } catch {
             print("Some error while saving data: \(error)")
@@ -74,7 +99,13 @@ extension RootViewModel {
     func removeTodoItem(id: String){
         do {
             self.fileCache.removeTodoItemById(id)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+//            CoreDataManager.shared.deleteTodo(id: id)
+            // SQLite
+            try sql.deleteTodo(id: id)
+
             self.updateTodoListState()
         } catch {
             print("Some error while trying to delete todoItem and save changed data: \(error)")
@@ -93,7 +124,13 @@ extension RootViewModel {
         let id = self.todoListState[indexPath.row].id
         do {
             self.fileCache.removeTodoItemById(id)
-            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // JSON
+//            try self.fileCache.saveTodosToFile(fileNameJson: rootViewModel.fileName)
+            // CoreData
+//            CoreDataManager.shared.deleteTodo(id: id)
+            // SQLite
+            try sql.deleteTodo(id: id)
+
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         } catch {
@@ -156,7 +193,19 @@ extension RootViewModel {
                 for item in todoList {
                     self.fileCache.addTodoItem(item)
                 }
-                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // JSON
+//                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // CoreData
+//                CoreDataManager.shared.deleteTodoList()
+//                for item in todoList {
+//                    CoreDataManager.shared.createTodo(item)
+//                }
+                // SQLite
+                try sql.deleteTodoList()
+                for item in todoList {
+                    try sql.createTodo(item)
+                }
+
                 self.fileCache.isDirty = false
 
                 updateTodoListState()
@@ -175,7 +224,18 @@ extension RootViewModel {
                 for item in todoList {
                     self.fileCache.addTodoItem(item)
                 }
-                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // JSON
+//                try self.fileCache.saveTodosToFile(fileNameJson: self.fileName)
+                // CoreData
+//                CoreDataManager.shared.deleteTodoList()
+//                for item in todoList {
+//                    CoreDataManager.shared.createTodo(item)
+//                }
+                // SQLite
+                try sql.deleteTodoList()
+                for item in todoList {
+                    try sql.createTodo(item)
+                }
 
                 updateTodoListState()
             } catch {

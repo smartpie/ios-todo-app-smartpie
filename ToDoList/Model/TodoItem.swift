@@ -6,7 +6,7 @@ enum Importance: String {
     case low = "low"
 }
 
-struct TodoItem: Equatable {
+public struct TodoItem: Equatable, Sendable {
     static let separator: String = ";"
     
     let id: String
