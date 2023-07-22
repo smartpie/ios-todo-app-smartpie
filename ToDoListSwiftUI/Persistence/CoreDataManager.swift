@@ -6,20 +6,31 @@ enum CDManagerErrors: Error {
 }
 
 @MainActor
-public final class CoreDataManager: NSObject {
-    public static let shared = CoreDataManager()
-    override private init() {}
-
-    private var appDelegate: AppDelegate {
-        UIApplication.shared.delegate as! AppDelegate
-    }
+struct CoreDataManager {
+    static let shared = CoreDataManager()
 
     private var context: NSManagedObjectContext {
-        appDelegate.persistentContainer.viewContext
+        CoreDataManager.shared.container.viewContext
     }
 
+    let container: NSPersistentContainer
+
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "ToDoListSwiftUI")
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
+
     // MARK: - CRUD
-    public func createTodo(_ todoItem: TodoItem) {
+    public func createTodo(_ todoItem: TodoItem) throws {
         guard let todoEntityDescription = NSEntityDescription.entity(forEntityName: "TodoItemCD", in: context) else {
             print("CoreData – Error while creating context")
             return
@@ -35,7 +46,7 @@ public final class CoreDataManager: NSObject {
         todo.changed_at = todoItem.lastChangeDate
         todo.created_at = todoItem.creationDate
 
-        appDelegate.saveContext()
+        try context.save()
     }
 
     public func fetchTodoList() -> [TodoItem] {
@@ -53,7 +64,7 @@ public final class CoreDataManager: NSObject {
         return []
     }
 
-    public func updateTodo(_ todoItem: TodoItem) {
+    public func updateTodo(_ todoItem: TodoItem) throws {
         let fetchRequest = NSFetchRequest<TodoItemCD>(entityName: "TodoItemCD")
 
         guard let results = try? context.fetch(fetchRequest) as [TodoItemCD],
@@ -70,10 +81,10 @@ public final class CoreDataManager: NSObject {
         todo.changed_at = todoItem.lastChangeDate
         todo.created_at = todoItem.creationDate
 
-        appDelegate.saveContext()
+        try context.save()
     }
 
-    public func deleteTodoList() {
+    public func deleteTodoList() throws {
         let fetchRequest = NSFetchRequest<TodoItemCD>(entityName: "TodoItemCD")
 
         do {
@@ -83,10 +94,10 @@ public final class CoreDataManager: NSObject {
             print("CoreData – Error while trying to wipe out TodoList")
         }
 
-        appDelegate.saveContext()
+        try context.save()
     }
 
-    public func deleteTodo(id: String) {
+    public func deleteTodo(id: String) throws {
         let fetchRequest = NSFetchRequest<TodoItemCD>(entityName: "TodoItemCD")
 
         guard let results = try? context.fetch(fetchRequest) as [TodoItemCD],
@@ -97,7 +108,7 @@ public final class CoreDataManager: NSObject {
 
         context.delete(todo)
 
-        appDelegate.saveContext()
+        try context.save()
     }
 
     // MARK: - Private functions

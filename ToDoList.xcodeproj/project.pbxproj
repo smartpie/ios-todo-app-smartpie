@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1A06492A68712000A72265 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06482A68712000A72265 /* ListView.swift */; };
+		CA1A064C2A687E5D00A72265 /* TodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A064B2A687E5D00A72265 /* TodoItemView.swift */; };
+		CA1A06542A69C4EC00A72265 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06532A69C4EC00A72265 /* ListViewModel.swift */; };
+		CA1A06942A69E6D400A72265 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06932A69E6D400A72265 /* CellView.swift */; };
+		CA1A06962A69E8AE00A72265 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06952A69E8AE00A72265 /* CheckBoxView.swift */; };
+		CA1A06982A69EE0900A72265 /* DeadLineDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06972A69EE0900A72265 /* DeadLineDateView.swift */; };
+		CA1A069A2A69F0A900A72265 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06992A69F0A900A72265 /* TodoItem.swift */; };
+		CA1A069C2A69F0ED00A72265 /* ImportanceSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A069B2A69F0ED00A72265 /* ImportanceSymbolView.swift */; };
+		CA1A06A12A6AAF2000A72265 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06A02A6AAF2000A72265 /* URLSession+Extension.swift */; };
+		CA1A06A32A6AAF3C00A72265 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06A22A6AAF3C00A72265 /* NetworkingService.swift */; };
+		CA1A06A52A6AAF5300A72265 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06A42A6AAF5300A72265 /* DefaultNetworkingService.swift */; };
+		CA1A06A92A6AC2B200A72265 /* AddNewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06A82A6AC2B200A72265 /* AddNewCellView.swift */; };
+		CA1A06AB2A6B226600A72265 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06AA2A6B226600A72265 /* CoreDataManager.swift */; };
+		CA1A06AE2A6B277D00A72265 /* TodoItemCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06AC2A6B277D00A72265 /* TodoItemCD+CoreDataClass.swift */; };
+		CA1A06B12A6B444500A72265 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06B02A6B444500A72265 /* HeaderView.swift */; };
+		CA1A06B52A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1A06B22A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodeld */; };
 		CA24D1352A45C47A002C565D /* UIFont+Extencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1342A45C47A002C565D /* UIFont+Extencion.swift */; };
 		CA24D1372A460B57002C565D /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1362A460B57002C565D /* SeparatorView.swift */; };
 		CA24D1392A4642C2002C565D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24D1382A4642C2002C565D /* Date+Extension.swift */; };
@@ -14,6 +30,9 @@
 		CA4CB5942A44D9930093F371 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4CB5932A44D9930093F371 /* CellView.swift */; };
 		CA683D6A2A4F7F40003EA596 /* AddCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D692A4F7F40003EA596 /* AddCellView.swift */; };
 		CA683D6C2A4F809E003EA596 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */; };
+		CA69B3082A6575D2000F5ECC /* ToDoListSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69B3072A6575D2000F5ECC /* ToDoListSwiftUIApp.swift */; };
+		CA69B30C2A6575D3000F5ECC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA69B30B2A6575D3000F5ECC /* Assets.xcassets */; };
+		CA69B30F2A6575D3000F5ECC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA69B30E2A6575D3000F5ECC /* Preview Assets.xcassets */; };
 		CA7352E32A571D1800AAAD19 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E22A571D1800AAAD19 /* URLSession+Extension.swift */; };
 		CA7352E52A572BE500AAAD19 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E42A572BE500AAAD19 /* NetworkingService.swift */; };
 		CA7352E72A572BF800AAAD19 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7352E62A572BF800AAAD19 /* DefaultNetworkingService.swift */; };
@@ -47,6 +66,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA1A06482A68712000A72265 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		CA1A064B2A687E5D00A72265 /* TodoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemView.swift; sourceTree = "<group>"; };
+		CA1A06532A69C4EC00A72265 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		CA1A06932A69E6D400A72265 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		CA1A06952A69E8AE00A72265 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		CA1A06972A69EE0900A72265 /* DeadLineDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadLineDateView.swift; sourceTree = "<group>"; };
+		CA1A06992A69F0A900A72265 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		CA1A069B2A69F0ED00A72265 /* ImportanceSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportanceSymbolView.swift; sourceTree = "<group>"; };
+		CA1A06A02A6AAF2000A72265 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		CA1A06A22A6AAF3C00A72265 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		CA1A06A42A6AAF5300A72265 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
+		CA1A06A82A6AC2B200A72265 /* AddNewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCellView.swift; sourceTree = "<group>"; };
+		CA1A06AA2A6B226600A72265 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CA1A06AC2A6B277D00A72265 /* TodoItemCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItemCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CA1A06B02A6B444500A72265 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		CA1A06B32A6B626D00A72265 /* fff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fff.xcdatamodel; sourceTree = "<group>"; };
+		CA1A06B42A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListSwiftUI.xcdatamodel; sourceTree = "<group>"; };
 		CA24D1342A45C47A002C565D /* UIFont+Extencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extencion.swift"; sourceTree = "<group>"; };
 		CA24D1362A460B57002C565D /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CA24D1382A4642C2002C565D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -54,6 +90,10 @@
 		CA4CB5932A44D9930093F371 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		CA683D692A4F7F40003EA596 /* AddCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellView.swift; sourceTree = "<group>"; };
 		CA683D6B2A4F809E003EA596 /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
+		CA69B3052A6575D2000F5ECC /* ToDoListSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA69B3072A6575D2000F5ECC /* ToDoListSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListSwiftUIApp.swift; sourceTree = "<group>"; };
+		CA69B30B2A6575D3000F5ECC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA69B30E2A6575D3000F5ECC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA7352E22A571D1800AAAD19 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		CA7352E42A572BE500AAAD19 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		CA7352E62A572BF800AAAD19 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
@@ -79,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CA69B3022A6575D2000F5ECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAC1D6652A379EEC005A45BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +164,74 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		CA1A06452A6863FD00A72265 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A06472A68641200A72265 /* TodoItemView */,
+				CA1A06462A68640900A72265 /* ListView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CA1A06462A68640900A72265 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A06482A68712000A72265 /* ListView.swift */,
+				CA1A06932A69E6D400A72265 /* CellView.swift */,
+				CA1A06952A69E8AE00A72265 /* CheckBoxView.swift */,
+				CA1A06972A69EE0900A72265 /* DeadLineDateView.swift */,
+				CA1A069B2A69F0ED00A72265 /* ImportanceSymbolView.swift */,
+				CA1A06A82A6AC2B200A72265 /* AddNewCellView.swift */,
+				CA1A06B02A6B444500A72265 /* HeaderView.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		CA1A06472A68641200A72265 /* TodoItemView */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A064B2A687E5D00A72265 /* TodoItemView.swift */,
+			);
+			path = TodoItemView;
+			sourceTree = "<group>";
+		};
+		CA1A064A2A68744B00A72265 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CA69B30B2A6575D3000F5ECC /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CA1A064D2A69939600A72265 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A06AC2A6B277D00A72265 /* TodoItemCD+CoreDataClass.swift */,
+				CA1A06992A69F0A900A72265 /* TodoItem.swift */,
+				CA1A06AA2A6B226600A72265 /* CoreDataManager.swift */,
+				CA1A06B22A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodeld */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		CA1A06522A69C4BB00A72265 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A06532A69C4EC00A72265 /* ListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CA1A069F2A6AAF0A00A72265 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A06A02A6AAF2000A72265 /* URLSession+Extension.swift */,
+				CA1A06A22A6AAF3C00A72265 /* NetworkingService.swift */,
+				CA1A06A42A6AAF5300A72265 /* DefaultNetworkingService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		CA24D1312A45C3AF002C565D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +241,28 @@
 				CACB2C3F2A4D95F2009EE84B /* UIColor+Extencion.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		CA69B3062A6575D2000F5ECC /* ToDoListSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A064A2A68744B00A72265 /* Assets */,
+				CA1A069F2A6AAF0A00A72265 /* Networking */,
+				CA1A064D2A69939600A72265 /* Persistence */,
+				CA1A06452A6863FD00A72265 /* Views */,
+				CA1A06522A69C4BB00A72265 /* ViewModels */,
+				CA69B3072A6575D2000F5ECC /* ToDoListSwiftUIApp.swift */,
+				CA69B30D2A6575D3000F5ECC /* Preview Content */,
+			);
+			path = ToDoListSwiftUI;
+			sourceTree = "<group>";
+		};
+		CA69B30D2A6575D3000F5ECC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CA69B30E2A6575D3000F5ECC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		CA7352E12A56DA0000AAAD19 /* Networking */ = {
@@ -143,6 +280,7 @@
 			children = (
 				CAC1D66A2A379EEC005A45BC /* ToDoList */,
 				CAC1D6812A379EEE005A45BC /* ToDoListTests */,
+				CA69B3062A6575D2000F5ECC /* ToDoListSwiftUI */,
 				CAC1D6692A379EEC005A45BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,6 +290,7 @@
 			children = (
 				CAC1D6682A379EEC005A45BC /* ToDoList.app */,
 				CAC1D67E2A379EEE005A45BC /* ToDoListTests.xctest */,
+				CA69B3052A6575D2000F5ECC /* ToDoListSwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,6 +362,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CA69B3042A6575D2000F5ECC /* ToDoListSwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA69B3312A6575D3000F5ECC /* Build configuration list for PBXNativeTarget "ToDoListSwiftUI" */;
+			buildPhases = (
+				CA69B3012A6575D2000F5ECC /* Sources */,
+				CA69B3022A6575D2000F5ECC /* Frameworks */,
+				CA69B3032A6575D2000F5ECC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToDoListSwiftUI;
+			productName = ToDoListSwiftUI;
+			productReference = CA69B3052A6575D2000F5ECC /* ToDoListSwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CAC1D6672A379EEC005A45BC /* ToDoList */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAC1D6922A379EEE005A45BC /* Build configuration list for PBXNativeTarget "ToDoList" */;
@@ -271,6 +427,9 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					CA69B3042A6575D2000F5ECC = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					CAC1D6672A379EEC005A45BC = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -298,11 +457,21 @@
 			targets = (
 				CAC1D6672A379EEC005A45BC /* ToDoList */,
 				CAC1D67D2A379EEE005A45BC /* ToDoListTests */,
+				CA69B3042A6575D2000F5ECC /* ToDoListSwiftUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CA69B3032A6575D2000F5ECC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA69B30F2A6575D3000F5ECC /* Preview Assets.xcassets in Resources */,
+				CA69B30C2A6575D3000F5ECC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAC1D6662A379EEC005A45BC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +491,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CA69B3012A6575D2000F5ECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1A06982A69EE0900A72265 /* DeadLineDateView.swift in Sources */,
+				CA1A06492A68712000A72265 /* ListView.swift in Sources */,
+				CA1A06AB2A6B226600A72265 /* CoreDataManager.swift in Sources */,
+				CA1A069C2A69F0ED00A72265 /* ImportanceSymbolView.swift in Sources */,
+				CA1A06B12A6B444500A72265 /* HeaderView.swift in Sources */,
+				CA1A06A32A6AAF3C00A72265 /* NetworkingService.swift in Sources */,
+				CA69B3082A6575D2000F5ECC /* ToDoListSwiftUIApp.swift in Sources */,
+				CA1A069A2A69F0A900A72265 /* TodoItem.swift in Sources */,
+				CA1A06962A69E8AE00A72265 /* CheckBoxView.swift in Sources */,
+				CA1A06942A69E6D400A72265 /* CellView.swift in Sources */,
+				CA1A06542A69C4EC00A72265 /* ListViewModel.swift in Sources */,
+				CA1A06A12A6AAF2000A72265 /* URLSession+Extension.swift in Sources */,
+				CA1A06AE2A6B277D00A72265 /* TodoItemCD+CoreDataClass.swift in Sources */,
+				CA1A064C2A687E5D00A72265 /* TodoItemView.swift in Sources */,
+				CA1A06A92A6AC2B200A72265 /* AddNewCellView.swift in Sources */,
+				CA1A06B52A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodeld in Sources */,
+				CA1A06A52A6AAF5300A72265 /* DefaultNetworkingService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAC1D6642A379EEC005A45BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +575,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CA69B32B2A6575D3000F5ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ToDoListSwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = K9J9XMX3UB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SeaPile.ToDoListSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA69B32C2A6575D3000F5ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ToDoListSwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = K9J9XMX3UB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SeaPile.ToDoListSwiftUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		CAC1D6902A379EEE005A45BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -595,6 +846,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CA69B3312A6575D3000F5ECC /* Build configuration list for PBXNativeTarget "ToDoListSwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA69B32B2A6575D3000F5ECC /* Debug */,
+				CA69B32C2A6575D3000F5ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CAC1D6632A379EEC005A45BC /* Build configuration list for PBXProject "ToDoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -644,6 +904,17 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		CA1A06B22A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA1A06B32A6B626D00A72265 /* fff.xcdatamodel */,
+				CA1A06B42A6B626D00A72265 /* ToDoListSwiftUI.xcdatamodel */,
+			);
+			currentVersion = CA1A06B32A6B626D00A72265 /* fff.xcdatamodel */;
+			path = ToDoListSwiftUI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		CAEE11AB2A5EF526006EB357 /* ToDoListModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
